@@ -55,7 +55,7 @@ export const userLogin = async (credentials) => {
     
 }
 
-export const getProfile = async ()  =>{ //Cuando esté conectada con mi backend (buscar bien los endpoints)
-    const res = await  axios.get(`${API_URL}/users`)
+export const getProfile = async (token, id)  =>{ //Cuando esté conectada con mi backend (buscar bien los endpoints)
+    const res = await  axios.get(`${API_URL}/users/profile`)
     return res.data
 }

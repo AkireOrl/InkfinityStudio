@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { getProfile } from "../../Services/ApiCalls";
-import { CustomInput } from "../../components/CustomInput/CustomInput";
+import { getProfile } from "../../Services/ApiCalls"; 
+import { InputLogin } from "../../Components/InputLogin/inputLogin";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/register");
+     //navigate("/register");
     } else {
       getProfile(token).then((res) => {
         setProfileData(res);
