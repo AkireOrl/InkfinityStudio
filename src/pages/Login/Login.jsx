@@ -40,16 +40,21 @@ export const Login = () => {
             userData: decodedToken
         }
         dispatch(login({credentials: data}))
+            setTimeout(() => {
+              navigate('/profile')
+            });
+          
       })
-      .catch((err) => console.error("me cago en mi vida que no funciona", err))
+      .catch((err) => console.error("Ha ocurrido un error", err))
     };
 
     
         useEffect(() => {
-            if (userRdxData) {
-             // navigate("/");
+            if (!userRdxData) {
+              navigate("/");
             }
           }, [userRdxData, navigate]);
+          console.log(userRdxData)
 
 
     return (

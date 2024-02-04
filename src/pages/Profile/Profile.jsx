@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { getProfile } from "../../Services/ApiCalls"; 
 import { InputLogin } from "../../Components/InputLogin/inputLogin";
+import { userData } from "../userSlice";
+import { useSelector } from "react-redux";
 
 export const Profile = () => {
+  const userRdxData = useSelector(userData)
+  console.log(userRdxData, "En profile")
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
