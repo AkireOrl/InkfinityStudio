@@ -30,24 +30,21 @@ export const Login = () => {
         }));
     };
 
+    const buttonHandler = () => {
+      userLogin(credentials)
+      .then((token) =>{
+        const decodedToken = jwtDecode(token)
 
-    const buttonHandler = async () => {
-        try {
-            const token = await userLogin(credentials);
-            const decodedToken = jwtDecode(token);
-      
-            const data = {
-              token: token,
-              userData: decodedToken,
-            };
-      
-            dispatch(login({ credentials: data }));
-            navigate("/profile");
-          } catch (err) {
-            console.error("ha ocurrido un error", err);
-          }
-        };
+        const data = {
+            token: token,
+            userData: decodedToken
+        }
+        dispatch(login({credentials: data}))
+      })
+      .catch((err) => console.error("me cago en mi vida que no funciona", err))
+    };
 
+    
         useEffect(() => {
             if (userRdxData) {
              // navigate("/");

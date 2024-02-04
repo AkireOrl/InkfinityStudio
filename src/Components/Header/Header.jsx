@@ -12,20 +12,22 @@ export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userRdxData = useSelector(userData);
+  // console.log(userRdxData, "soy redux data en header")
 
   const token = userRdxData.credentials.token
+  // console.log(token, "soy log en linea 17 de header")
   const decoded = userRdxData.credentials.userData
   //  const token = 3
   // const decoded = 4
-  console.log(userRdxData, "soy redux data en header")
+
 
 
   const logMeOut = () => {
-    dispatch(logout({ credentials: {} }));
+    dispatch(logout({ credentials: {}}));
     setTimeout(() => {
       navigate('/home')
-    },)
-  }
+    });
+  };
 
   return (
     <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body" id="navbar">

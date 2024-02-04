@@ -37,7 +37,7 @@ export const Register = () => {
         <div className="login">
             <div className="loginDiv">
                 <div className="input">
-                    <div class="inputBox">
+                    <div className="inputBox">
                         <label>NOMBRE</label>
                         <InputLogin
                             type={"text"}

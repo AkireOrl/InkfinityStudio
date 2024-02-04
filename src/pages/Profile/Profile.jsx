@@ -12,7 +12,7 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!token) {
-     navigate("/register");
+     //navigate("/register");
     } else {
       getProfile(token).then((res) => {
         setProfileData(res);
