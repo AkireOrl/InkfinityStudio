@@ -1,11 +1,6 @@
 import { Header } from "./Components/Header/Header"
-import { Body } from "./pages/Body"
+import { Body } from "./pages/Body/Body"
 import { Footer } from "./Components/Footer/Footer"
-
-
-
-
-
 
 function App() {
   
@@ -19,4 +14,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

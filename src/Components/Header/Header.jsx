@@ -5,24 +5,33 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, userData } from "../../pages/userSlice";
 
 export const Header = () => {
-  const navigate = useNavigate()
-  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userRdxData = useSelector(userData);
+
+  const token = userRdxData.credentials.token
+  const decoded = userRdxData.credentials.userData
+  //  const token = 3
+  // const decoded = 4
+  console.log(userRdxData, "soy redux data en header")
+
 
   const logMeOut = () => {
-    localStorage.setItem('token', '')
-    localStorage.setItem('decoded', JSON.stringify({}))
-    setTimeout(() =>{
-      navigate('/personajes')
+    dispatch(logout({ credentials: {} }));
+    setTimeout(() => {
+      navigate('/home')
     },)
   }
 
   return (
-    <Navbar  bg="dark" data-bs-theme="dark" expand="lg" className="bg-body" id="navbar">
+    <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body" id="navbar">
       <Container>
         <Navbar.Brand href="">Inkfinity Studio</Navbar.Brand>
-        <Navbar.Toggle aria-controls="white-navbar-nav text-white"/>
+        <Navbar.Toggle aria-controls="white-navbar-nav text-white" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>

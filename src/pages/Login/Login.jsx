@@ -4,18 +4,24 @@ import { InputLogin } from "../../Components/InputLogin/inputLogin";
 import { userLogin } from "../../Services/ApiCalls";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { login, userData } from "../userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export const Login = () => {
-
-    const navigate = useNavigate()
 
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
 
+    // instancio redux en modo escritura
+    const dispatch = useDispatch()
 
+    // instancio redux en modo lectura
+    const userRdxData = useSelector(userData)
+
+    const navigate = useNavigate();
 
     const inputHandler = (event) => {
         setCredentials((prevState) => ({
@@ -25,36 +31,28 @@ export const Login = () => {
     };
 
 
+    const buttonHandler = async () => {
+        try {
+            const token = await userLogin(credentials);
+            const decodedToken = jwtDecode(token);
+      
+            const data = {
+              token: token,
+              userData: decodedToken,
+            };
+      
+            dispatch(login({ credentials: data }));
+            navigate("/profile");
+          } catch (err) {
+            console.error("ha ocurrido un error", err);
+          }
+        };
 
-    const buttonHandler = () => {
-        if (credentials.password !="" &&
-        credentials.email != ""){
-        userLogin(credentials).then((token) => {
-            //console.log(credentials)
-            const decodedToken = jwtDecode(token)
-            console.log(decodedToken)
-            localStorage.setItem('token', token);
-            localStorage.setItem('decodedToken', JSON.stringify(decodedToken));
-            setTimeout(() => { navigate('/profile') }, 1000)
-
-        })
-        .catch((errorMessage)=>{alert("Wrong username or password")})} 
-        
-    };
-
-
-
-
-        let token = localStorage.getItem("token");
         useEffect(() => {
-            let token = localStorage.getItem("token");
-            if (!token) {
-               // navigate('/register')
-            } else {
-                navigate('/profile')
+            if (userRdxData) {
+             // navigate("/");
             }
-        }, []);
-
+          }, [userRdxData, navigate]);
 
 
     return (

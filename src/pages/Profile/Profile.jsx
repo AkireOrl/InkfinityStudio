@@ -12,7 +12,7 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!token) {
-     //navigate("/register");
+     navigate("/register");
     } else {
       getProfile(token).then((res) => {
         setProfileData(res);
@@ -48,11 +48,11 @@ export const Profile = () => {
       <button onClick={() => buttonHandler()}></button>
       {isEditing 
       ? (
-        <CustomInput
+        <InputLogin
           name="firstName"
           type="text"
           handler={inputHandler}
-        ></CustomInput>
+        ></InputLogin>
       ) : null}
       <h1>{profileData.eyeColor}</h1>
       <img src={profileData.image}></img>
