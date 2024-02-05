@@ -9,13 +9,13 @@ import { jwtDecode } from "jwt-decode";
 
 export const Profile = () => {
   const userRdxDetail = useSelector(userData)
-  console.log(userRdxDetail, "En profile")
+   console.log(userRdxDetail, "En profile")
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState({});
   console.log(profileData, "Linea de arriba qu eno es la 50")
   const [isEditing, setIsEditing] = useState(false);
   const token = userRdxDetail.credentials.token
-  const decodedToken = jwtDecode(token, "en profile Por Dos")
+  const decodedToken = jwtDecode(token)
   console.log(token, "Toekn en Profile");
 
 
@@ -50,11 +50,11 @@ export const Profile = () => {
 
   useEffect(() => {
     console.log(profileData);
-  }, [profileData]);
+  }, [profileData, "no está llegando aquí"]);
 
   return (
     <div className="profileDesign">
-      <h1>{profileData.firstName}</h1>
+      <h1 className="">{profileData.profileUser.username}</h1> 
       <button onClick={() => buttonHandler()}></button>
       {isEditing 
       ? (
@@ -64,8 +64,10 @@ export const Profile = () => {
           handler={inputHandler}
         ></InputLogin>
       ) : null}
-      <h1>{profileData.name}</h1>
-      <img src={profileData.image}></img>
+      <h1>{profileData.profileUser.name}</h1>
+      <h1>{profileData.profileUser.surname}</h1>
+      <p>{profileData.profileUser.email}</p> 
+      <img src={profileData.profileUser.photo}></img>
     </div>
   );
 };

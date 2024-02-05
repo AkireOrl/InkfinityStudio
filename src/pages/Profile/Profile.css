@@ -1,8 +1,22 @@
-.img {
-    width: 100px;
-    height: 100px;
+
+
+.profileDesign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    
 }
 
-.h1 {
-    color: aliceblue;
+h1{
+    color: #fff;
 }
+img{
+    width: 50px;
+    height: 50px;
+}
+p{
+    color: #fff;
+}
+
