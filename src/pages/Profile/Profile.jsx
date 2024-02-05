@@ -3,20 +3,26 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { getProfile } from "../../Services/ApiCalls"; 
 import { InputLogin } from "../../Components/InputLogin/inputLogin";
-import { userData } from "../userSlice";
 import { useSelector } from "react-redux";
+import { userData } from "../userSlice";
+import { jwtDecode } from "jwt-decode";
 
 export const Profile = () => {
-  const userRdxData = useSelector(userData)
-  console.log(userRdxData, "En profile")
+  const userRdxDetail = useSelector(userData)
+  console.log(userRdxDetail, "En profile")
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState({});
+  console.log(profileData, "Linea de arriba qu eno es la 50")
   const [isEditing, setIsEditing] = useState(false);
-  const token = localStorage.getItem("token");
+  const token = userRdxDetail.credentials.token
+  const decodedToken = jwtDecode(token, "en profile Por Dos")
+  console.log(token, "Toekn en Profile");
+
+
 
   useEffect(() => {
     if (!token) {
-     //navigate("/register");
+     navigate("/register");
     } else {
       getProfile(token).then((res) => {
         setProfileData(res);
@@ -58,7 +64,7 @@ export const Profile = () => {
           handler={inputHandler}
         ></InputLogin>
       ) : null}
-      <h1>{profileData.eyeColor}</h1>
+      <h1>{profileData.name}</h1>
       <img src={profileData.image}></img>
     </div>
   );

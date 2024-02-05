@@ -58,9 +58,10 @@ export const userLogin = async (credentials) => {
 export const getProfile = async (token)  =>{ 
     const config = {
         headers:{
-            Authorizarition: "Bearer " + token
+            Authorization: "Bearer " + token
         },
     }
-    const res = await axios.get(`${API_URL}/users/profile`, config)
+    console.log(config, "soy log de api")
+    const res = await axios.get(`${API_URL}/api/users/profile`, config)
     return res.data
 }
