@@ -62,6 +62,6 @@ export const getProfile = async (token)  =>{
         },
     }
     console.log(config, "soy log de api")
-    const res = await axios.get(`${API_URL}/api/users/profile`, config)
+    const res = await axios.get(`${API_URL}/api/users/profile2`, config)
     return res.data
 }

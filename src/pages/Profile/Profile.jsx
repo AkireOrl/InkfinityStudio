@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { getProfile } from "../../Services/ApiCalls"; 
-import { InputLogin } from "../../Components/InputLogin/inputLogin";
+import { InputLogin } from "../../Components/InputLogin/InputLogin";
 import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { jwtDecode } from "jwt-decode";
@@ -15,20 +15,23 @@ export const Profile = () => {
   console.log(profileData, "Linea de arriba qu eno es la 50")
   const [isEditing, setIsEditing] = useState(false);
   const token = userRdxDetail.credentials.token
-  const decodedToken = jwtDecode(token)
+  //const decodedToken = jwtDecode(token)
   console.log(token, "Toekn en Profile");
 
 
 
   useEffect(() => {
-    if (!token) {
-     navigate("/register");
-    } else {
-      getProfile(token).then((res) => {
+    const fetchData = async () => {
+      if (!token) {
+        navigate("/register");
+      } else {
+        const res = await getProfile(token);
         setProfileData(res);
-      });
-    }
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [getProfile, token, navigate]);
 
   const inputHandler = (event) => {
     setProfileData((prevState) => ({
@@ -49,12 +52,14 @@ export const Profile = () => {
   };
 
   useEffect(() => {
-    console.log(profileData);
-  }, [profileData, "no está llegando aquí"]);
+    console.log(profileData, "no está llegando aquí");
+  }, [profileData]);
 
   return (
+    <>
     <div className="profileDesign">
-      <h1 className="">{profileData.profileUser.username}</h1> 
+    <img src={profileData?.photo}></img>
+      <h1 className="">{profileData.username}</h1> 
       <button onClick={() => buttonHandler()}></button>
       {isEditing 
       ? (
@@ -64,10 +69,19 @@ export const Profile = () => {
           handler={inputHandler}
         ></InputLogin>
       ) : null}
-      <h1>{profileData.profileUser.name}</h1>
-      <h1>{profileData.profileUser.surname}</h1>
-      <p>{profileData.profileUser.email}</p> 
-      <img src={profileData.profileUser.photo}></img>
+      <h2>{profileData.name}</h2>
+      <h2>{profileData.surname}</h2>
+      <p>{profileData.email}</p> 
+      
+      
+      {!!profileData
+      ?
+      <>
+      <h2>{profileData.appointments?.date}</h2>
+      </>
+      : null}
+
     </div>
+    </>
   );
 };

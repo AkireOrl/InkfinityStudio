@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Login.css";
-import { InputLogin } from "../../Components/InputLogin/inputLogin";
+import { InputLogin } from "../../Components/InputLogin/InputLogin";
 import { userLogin } from "../../Services/ApiCalls";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +33,10 @@ export const Login = () => {
     const buttonHandler = () => {
       userLogin(credentials)
       .then((token) =>{
+        if(!token){
+            navigate("/login");
+            return null;
+            }
         const decodedToken = jwtDecode(token)
 
         const data = {
@@ -51,10 +55,10 @@ export const Login = () => {
     
         useEffect(() => {
             if (!userRdxData) {
-              navigate("/");
+              navigate();
             }
           }, [userRdxData, navigate]);
-          console.log(userRdxData)
+          
 
 
     return (
