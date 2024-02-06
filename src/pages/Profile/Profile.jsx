@@ -6,6 +6,7 @@ import { InputLogin } from "../../Components/InputLogin/InputLogin";
 import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { jwtDecode } from "jwt-decode";
+import moment from "moment";
 
 export const Profile = () => {
   const userRdxDetail = useSelector(userData)
@@ -74,12 +75,15 @@ export const Profile = () => {
       <p>{profileData.email}</p> 
       
       
-      {!!profileData
-      ?
-      <>
-      <h2>{profileData.appointments?.date}</h2>
-      </>
-      : null}
+      {profileData.appointments &&
+  profileData.appointments.map((appointment) => (
+    <div key={appointment.id}>
+      {appointment.date ? (
+        <p>{moment(appointment.date).format("DD-MM-YYYY")}</p>
+      ) : null}
+      <p>{appointment?.hour}</p>
+    </div>
+  ))}
 
     </div>
     </>
