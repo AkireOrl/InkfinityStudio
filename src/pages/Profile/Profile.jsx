@@ -17,6 +17,7 @@ export const Profile = () => {
   const token = userRdxDetail.credentials.token
   //const decodedToken = jwtDecode(token)
   console.log(token, "Toekn en Profile");
+ 
 
 
 
@@ -58,8 +59,8 @@ export const Profile = () => {
   return (
     <>
     <div className="profileDesign">
-    <img src={profileData?.photo}></img>
-      <h1 className="">{profileData.username}</h1> 
+    <img src={profileData.profileUser?.photo}></img>
+      <h1 className="">{profileData.profileUser?.username}</h1> 
       <button onClick={() => buttonHandler()}></button>
       {isEditing 
       ? (
@@ -69,17 +70,28 @@ export const Profile = () => {
           handler={inputHandler}
         ></InputLogin>
       ) : null}
-      <h2>{profileData.name}</h2>
-      <h2>{profileData.surname}</h2>
-      <p>{profileData.email}</p> 
+     
+
+      <h2>{profileData.profileUser?.name}</h2>
+      <h2>{profileData.profileUser?.surname}</h2>
+      <p>{profileData.profileUser?.email}</p> 
       
-      
-      {!!profileData
-      ?
-      <>
-      <h2>{profileData.appointments?.date}</h2>
-      </>
-      : null}
+      {profileData.userArtistProfiles && profileData.userArtistProfiles.map((userArtistProfiles) => (
+        <div key={userArtistProfiles.id}>
+          <p>{userArtistProfiles.name}</p>
+        </div>
+      ))}
+      {/* <h2>{profileData.userArtistProfiles?.name}</h2> no va */}
+      {profileData.appointments && profileData.appointments.map((appointments) => (
+        <div key={appointments.id}>    
+          <p>  {appointments?.date?.toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })}</p>
+          <p>{appointments?.hour}</p>
+        </div>
+      ))}
 
     </div>
     </>
