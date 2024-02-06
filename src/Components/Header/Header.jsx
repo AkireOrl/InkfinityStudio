@@ -12,12 +12,18 @@ export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userRdxData = useSelector(userData);
-  // console.log(userRdxData, "soy redux data en header")
+  console.log(userRdxData, "soy redux data en header");
 
-  const token = userRdxData.credentials.token
-  // console.log(token, "soy log en linea 17 de header")
-  const decoded = userRdxData.credentials.userData
-  //  const token = 3
+  const token = userRdxData.credentials 
+  ? 
+  userRdxData.credentials.token 
+  : null;
+  console.log(token, "soy log en linea 17 de header")
+  const decoded = userRdxData.credentials 
+  ? 
+  userRdxData.credentials.userData 
+  : null;
+  //   const token = 3
   // const decoded = 4
 
 
@@ -25,7 +31,7 @@ export const Header = () => {
   const logMeOut = () => {
     dispatch(logout({ credentials: {}}));
     setTimeout(() => {
-      navigate('/home')
+      navigate()
     });
   };
 

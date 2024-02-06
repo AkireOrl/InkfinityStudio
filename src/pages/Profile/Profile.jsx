@@ -18,6 +18,7 @@ export const Profile = () => {
   const token = userRdxDetail.credentials.token
   //const decodedToken = jwtDecode(token)
   console.log(token, "Toekn en Profile");
+ 
 
 
 
@@ -59,8 +60,8 @@ export const Profile = () => {
   return (
     <>
     <div className="profileDesign">
-    <img src={profileData?.photo}></img>
-      <h1 className="">{profileData.username}</h1> 
+    <img src={profileData.profileUser?.photo}></img>
+      <h1 className="">{profileData.profileUser?.username}</h1> 
       <button onClick={() => buttonHandler()}></button>
       {isEditing 
       ? (
@@ -75,15 +76,12 @@ export const Profile = () => {
       <p>{profileData.email}</p> 
       
       
-      {profileData.appointments &&
-  profileData.appointments.map((appointment) => (
-    <div key={appointment.id}>
-      {appointment.date ? (
-        <p>{moment(appointment.date).format("DD-MM-YYYY")}</p>
-      ) : null}
-      <p>{appointment?.hour}</p>
-    </div>
-  ))}
+      {!!profileData
+      ?
+      <>
+      <h2>{profileData.appointments?.date}</h2>
+      </>
+      : null}
 
     </div>
     </>
