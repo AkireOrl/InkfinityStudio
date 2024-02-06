@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { jwtDecode } from "jwt-decode";
 import moment from "moment";
-import moment from "moment";
+
 
 export const Profile = () => {
   const userRdxDetail = useSelector(userData)
