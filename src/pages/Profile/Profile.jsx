@@ -76,12 +76,16 @@ export const Profile = () => {
       <p>{profileData.email}</p> 
       
       
-      {!!profileData
-      ?
-      <>
-      <h2>{profileData.appointments?.date}</h2>
-      </>
-      : null}
+   
+{profileData.appointments &&
+  profileData.appointments.map((appointment) => (
+    <div key={appointment.id}>
+      {appointment.date ? (
+        <p>{moment(appointment.date).format("DD-MM-YYYY")}</p>
+      ) : null}
+      <p>{appointment?.hour}</p>
+    </div>
+  ))}
 
     </div>
     </>
