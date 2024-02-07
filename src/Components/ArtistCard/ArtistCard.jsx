@@ -1,14 +1,14 @@
 
 import "./ArtistCard.css"
-export const ArtistCard = ({id, image, name}) => {
+export const ArtistCard = ({id, photo, name}) => {
 
 
     return (
       
-        <div className="character-card" key={id}>
+        <div className="artist-card" key={id}>
         <div className="card-content">
-          <img className="character-img" src={image}></img>
-          <h2 id="character-name">{name}</h2>
+          <img className="artist-img" src={photo}></img>
+          <h3 id="artist-name">{name}</h3>
         </div>
       </div>
 

@@ -16,7 +16,7 @@ export const bringAllCharacters = async () => {
 }
 
 export const bringAllArtist = async ()  =>{ //Cuando esté conectada con mi backend
-    const res = await  axios.get(`${API_URL}/artist`)
+    const res = await  axios.get(`${API_URL}/api/artist`)
     return res.data
 }
 

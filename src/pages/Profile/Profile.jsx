@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { userData } from "../userSlice";
 import { jwtDecode } from "jwt-decode";
 import moment from "moment";
+import { AppointmentCard } from "../../Components/AppointmentsCard/AppointmentsCard.jsx";
 
 
 export const Profile = () => {
@@ -18,7 +19,7 @@ export const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const token = userRdxDetail.credentials.token
   //const decodedToken = jwtDecode(token)
-  console.log(token, "Toekn en Profile");
+  console.log(token, "Token en Profile");
 
 
 
@@ -61,41 +62,41 @@ export const Profile = () => {
   return (
     <>
       <div className="profileDesign">
-        <img src={profileData.profileUser?.photo}></img>
-        <h1 className="">{profileData.profileUser?.username}</h1>
-        <button onClick={() => buttonHandler()}></button>
-        {isEditing
-          ? (
-            <InputLogin
-              name="firstName"
-              type="text"
-              handler={inputHandler}
-            ></InputLogin>
-          ) : null}
-
+        <div className="userInfo">
+          <img src={profileData.profileUser?.photo}></img>
+          <h1 className="">{profileData.profileUser?.username}</h1>
+          <button onClick={() => buttonHandler()}></button>
+          {isEditing
+            ? (
+              <InputLogin
+                name="firstName"
+                type="text"
+                handler={inputHandler}
+              ></InputLogin>
+            ) : null}
+        </div>
 
         <h2>{profileData.profileUser?.name}</h2>
         <h2>{profileData.profileUser?.surname}</h2>
         <p>{profileData.profileUser?.email}</p>
 
-        {profileData.userArtistProfiles && profileData.userArtistProfiles.map((userArtistProfiles) => (
-          <div key={userArtistProfiles.id}>
-            <p>{userArtistProfiles.name}</p>
-          </div>
-        ))}
-        {/* <h2>{profileData.userArtistProfiles?.name}</h2> no va */}
-        {profileData.appointments &&
-          profileData.appointments.map((appointment) => (
-            <div key={appointment.id}>
-              {appointment.date ? (
-                <p>{moment(appointment.date).format("DD-MM-YYYY")}</p>
-              ) : null}
-              <p>{appointment?.hour}</p>
-            </div>
-          ))}
 
-
-    </div >
+     
+        
+        <div className="appointmentsUserContainer">
+  {profileData.appointments && profileData.userArtistIds.map((userArtistId, index) => (
+    <AppointmentCard
+      key={index}
+      artistName={userArtistId}
+      date={moment(profileData.appointments[index].date).format("DD-MM-YYYY")}
+      hour={profileData.appointments[index].hour}
+    
+    />
+  ))}
+</div>
+      </div>
+      
     </>
-  );
+  )
 };
+

@@ -1,20 +1,12 @@
-.artist-card{
+
+.AppointmentCard {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
-    
-    
-     
-}
-.artist-card {
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 250px;
-    height: 375px;
-    margin-top: 2%; 
+    height: 250px;
+    margin-top: 2%;
     color: #FFF;
     line-height: 1.5em;
     background: #060c21;
@@ -22,11 +14,12 @@
     padding: 40px 40px 60px;
     border-radius: 10px;
     text-align: center;
-    margin-top:  10%;
+    margin-top: 10%;
     position: relative;
 
 }
-.artist-card::before {
+
+.AppointmentCard::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -40,16 +33,43 @@
 }
 
 
-  
-  .artist-card:hover {
+
+.AppointmentCard:hover {
     transition-duration: 1.25s;
     transform: scale(1.5);
     box-shadow: 0 0 100px 12px hsl(340, 82%, 52%);
     cursor: pointer;
     z-index: 10;
+}
+
+.AppointmentCard h3 {
+    font-size: clamp(20px, 4vw, 30px);
+    margin-bottom: 5px;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    color: #FFF;
+}
+
+.character-card p {
+    margin: 0;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+  
+  .appointment-card:hover {
+    transition-duration: 1.25s;
+    transform: scale(1.5);
+    box-shadow: 0 0 100px 12px hsl(340, 82%, 52%);
+    cursor: crosshair;
+    z-index: 10;
   }
   
-  .artist-card h3 {
+  .appointment-card h3 {
     font-size: clamp(20px, 4vw, 30px);
     margin-bottom: 5px;
     overflow: hidden;
@@ -58,7 +78,7 @@
     color: #FFF;
   }
   
-  .artist-card p {
+  .appointment-card p {
     margin: 0;
     font-size: 14px;
     white-space: nowrap;
@@ -67,12 +87,4 @@
     text-overflow: ellipsis;
   }
   
-  .card-content {
-    margin-top: 2.5em;
-  }
-  
-  .artist-img {
-    width: 250px;
-    height: 200px;
-    border-radius: 5px;
-  }
+
