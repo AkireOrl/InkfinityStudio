@@ -1,37 +1,68 @@
 import { useEffect, useState } from "react";
 import "./Register.css";
-import { InputLogin } from "../../Components/InputLogin/inputLogin";
-import { bringAllCharacters } from "../../Services/ApiCalls";
+import { InputLogin } from "../../Components/InputLogin/InputLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createNewUser, userLogin } from "../../Services/ApiCalls";
+import { login, userData } from "../userSlice";
+import { jwtDecode } from "jwt-decode";
+
 
 
 export const Register = () => {
-    const [characters, setCharacters] = useState([]);
-    const [userData, setUserData] = useState({
-        name: "",
+    const [registerData, setRegisterData] = useState({
+        username: "",
         email: "",
         password: "",
     });
+    console.log(registerData, "input data");
 
     const inputHandler = (event) => {
-        setUserData((prevState) => ({
+        setRegisterData((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value,
         }));
     };
 
+    // instancio redux en modo escritura
+    const dispatch = useDispatch()
+    // // instancio redux en modo lectura
+    const userRdxData = useSelector(userData);
+
+    const navigate = useNavigate();
+
     const buttonHandler = () => {
-        bringAllCharacters().then((characters) => {
-            setCharacters(characters);
-        });
-    };
+        //definimos las credenciales para el futuro login con los datos de registro
+        const credentials = {
+          email: registerData.email,
+          password: registerData.password,
+        };
+        createNewUser(registerData)
+        .then(() =>{
+     
+            userLogin(credentials)
+            .then((token) =>{
+              if(!token){
+                  navigate("/login");
+                  return null;
+                  }
+              const decodedToken = jwtDecode(token)
+      
+              const data = {
+                  token: token,
+                  userData: decodedToken
+              }
+              dispatch(login({credentials: data}))
+                  setTimeout(() => {
+                    navigate('/profile')
+                  });
+                
+            })
+            .catch((err) => console.error("Ha ocurrido un error", err))
+          });
+        }
+  
 
-    useEffect(() => {
-        console.log(characters);
-    }, [characters]);
-
-    useEffect(() => {
-        // console.table(userData)
-    }, [userData]);
 
     return (
         <div className="login">
@@ -41,7 +72,7 @@ export const Register = () => {
                         <label>NOMBRE</label>
                         <InputLogin
                             type={"text"}
-                            name={"name"}
+                            name={"username"}
                             handler={inputHandler}
                         ></InputLogin>
 
@@ -57,12 +88,12 @@ export const Register = () => {
                             name={"password"}
                             handler={inputHandler}
                         ></InputLogin>
-                        <input type="submit" name="" value="Registrarse"></input>
-                        <h1>{userData.name}</h1>
+                        <input type="submit" name="" onClick={buttonHandler} value="Registrarse"></input>
+                        
                     </div>
                 </div>
 
             </div>
         </div>
     );
-};
+}
