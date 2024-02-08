@@ -146,7 +146,7 @@ export const Tatuadores = () => {
             });
         }
         console.log(artists, "soy console de artists, a ver si salgo");
-    }, [artists]);
+    }, []);
 
     return (
         <>
@@ -158,18 +158,18 @@ export const Tatuadores = () => {
             <div className="apiCallButton" onClick={buttonHandler}></div>
 
             <div className="artistContainer">
-                {artists.userArtistIds.length > 0 && (
-                    <>
-                        {artists.userArtistIds.map((artist) => {
-                            return (
-                                <ArtistCard
-                                    key={artist.id}                
-                                    name={artist.name}                                   
-                                    photo={artist.photo}
-                                />
-                            );
-                        })}
-                    </>
+                {artists && artists.userArtistIds && artists.userArtistIds.length > 0 ? (
+                    artists.userArtistIds.map((artist) => {
+                        return (
+                            <ArtistCard
+                                key={artist.id}
+                                name={artist.name}
+                                photo={artist.photo}
+                            />
+                        );
+                    })
+                ) : (
+                    <p>No hay artistas para mostrar.</p>
                 )}
             </div>
 
