@@ -18,7 +18,7 @@ export const Header = () => {
   ? 
   userRdxData.credentials.token 
   : null;
-  console.log(token, "soy log en linea 17 de header")
+  console.log(token, "soy log en linea 21 de header")
   const decoded = userRdxData.credentials 
   ? 
   userRdxData.credentials.userData 
