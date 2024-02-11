@@ -53,7 +53,7 @@ export const updateUser = async (token, updateData) => {
     };
 
     const res = await axios.patch(`${API_URL}/api/users/`,updateData, config);
-
+   
     return res.data;
 }
 

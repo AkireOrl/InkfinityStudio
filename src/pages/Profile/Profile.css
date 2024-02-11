@@ -43,3 +43,8 @@ p {
     gap: 3em;    
 
 }
+
+.updateData{
+    display: flex;
+    flex-direction: column;
+}

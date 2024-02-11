@@ -49,21 +49,23 @@ export const Tatuadores = () => {
             </div>
 
             <div className="apiCallButton" onClick={buttonHandler}></div>
+            <div className=" container-fluid col-9">
+                <div className="artistContainer">
 
-            <div className="artistContainer">
-                {artists && artists.userArtistIds && artists.userArtistIds.length > 0 ? (
-                    artists.userArtistIds.map((artist) => {
-                        return (
-                            <ArtistCard
-                                key={artist.id}
-                                name={artist.name}
-                                photo={artist.photo}
-                            />
-                        );
-                    })
-                ) : (
-                    <p>No hay artistas para mostrar.</p>
-                )}
+                    {artists && artists.userArtistIds && artists.userArtistIds.length > 0 ? (
+                        artists.userArtistIds.map((artist) => {
+                            return (
+                                <ArtistCard
+                                    key={artist.id}
+                                    name={artist.name}
+                                    photo={artist.photo}
+                                />
+                            );
+                        })
+                    ) : (
+                        <p>No hay artistas para mostrar.</p>
+                    )}
+                </div>
             </div>
 
         </>
