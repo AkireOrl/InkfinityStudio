@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Profile.css";
-import { getProfile, updateUser } from "../../Services/ApiCalls";
-import { InputLogin } from "../../Components/InputLogin/InputLogin";
+import "../Profile/Profile.css";
+import { getArtistById, getProfile, updateUser } from "../../Services/ApiCalls.jsx";
+import { InputLogin } from "../../Components/InputLogin/InputLogin.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserData, userData } from "../userSlice";
+import { updateUserData, userData } from "../userSlice.js";
 import { jwtDecode } from "jwt-decode";
 import moment from "moment";
 import { AppointmentCard } from "../../Components/AppointmentsCard/AppointmentsCard.jsx";
 
 
 
-export const Profile = () => {
+export const TatuProfile = () => {
   const userRdxDetail = useSelector(userData)
   // console.log(userRdxDetail, "En profile")
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ export const Profile = () => {
   const token = userRdxDetail.credentials.token
   const decodedToken = jwtDecode(token)
   // console.log(token, "Token en Profile");
-  const userId = decodedToken.userId;
-  // console.log(userId);
+  const userId = decodedToken.userId
+  console.log(userId);
   const dispatch = useDispatch();
   const [editableProfileData, setEditableProfileData] = useState({});
   // console.log(editableProfileData, "input data");
@@ -31,16 +31,16 @@ export const Profile = () => {
     const fetchData = async () => {
       if (!token) {
         navigate("/register");
-      } else {
-        const res = await getProfile(token);
+      } else  {
+        const res = await getArtistById(token);
         setProfileData(res);
 
         //logica para determinar que entra en el seteditableprofiledata
         setEditableProfileData({
-          username: res.profileUser.username,
-          name: res.profileUser.name,
-          surname: res.profileUser.surname,
-          photo: res.profileUser.photo
+          // username: res.profileUser.username,
+          // name: res.profileUser.name,
+          // surname: res.profileUser.surname,
+          // photo: res.profileUser.photo
           
         });
         
@@ -112,8 +112,8 @@ export const Profile = () => {
     <>
       <div className="profileDesign">
         <div className="userInfo">
-          <img src={profileData.profileUser?.photo}></img>
-          <h1 className="">{profileData.profileUser?.username}</h1>
+          <img src={profileData.photo}></img>
+          <h1 className="">{profileData.username}</h1>
           <button onClick={() => buttonHandler()}>
             {isEditing ? "" : "Editar perfil"}
           </button>
@@ -174,7 +174,6 @@ export const Profile = () => {
               hour={profileData.appointments[index].hour}
 
             />
-            
           ))}
         </div>
       </div>
