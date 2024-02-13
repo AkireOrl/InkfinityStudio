@@ -31,34 +31,35 @@ export const Login = () => {
     };
 
     const buttonHandler = () => {
-      userLogin(credentials)
-      .then((token) =>{
-        if(!token){
-            navigate("/login");
-            return null;
-            }
-        const decodedToken = jwtDecode(token)
+        userLogin(credentials)
+            .then((token) => {
+                if (!token) {
+                    navigate("/login");
+                    return null;
+                }
+                const decodedToken = jwtDecode(token)
 
-        const data = {
-            token: token,
-            userData: decodedToken
-        }
-        dispatch(login({credentials: data}))
-            setTimeout(() => {
-              navigate('/profile')
-            });
-          
-      })
-      .catch((err) => console.error("Ha ocurrido un error", err))
+                const data = {
+                    token: token,
+                    userData: decodedToken
+                }
+                dispatch(login({ credentials: data }))
+                const isAdmin = decodedToken.userRoles.includes("admin");
+                setTimeout(() => {
+                    isAdmin ? navigate('/tatuprofile') : navigate('/profile');
+                });
+
+            })
+            .catch((err) => console.error("Ha ocurrido un error", err))
     };
 
-    
-        useEffect(() => {
-            if (!userRdxData) {
-              navigate();
-            }
-          }, [userRdxData, navigate]);
-          
+
+    useEffect(() => {
+        if (!userRdxData) {
+            navigate();
+        }
+    }, [userRdxData, navigate]);
+
 
 
     return (

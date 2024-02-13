@@ -37,10 +37,10 @@ export const TatuProfile = () => {
 
         //logica para determinar que entra en el seteditableprofiledata
         setEditableProfileData({
-          // username: res.profileUser.username,
-          // name: res.profileUser.name,
-          // surname: res.profileUser.surname,
-          // photo: res.profileUser.photo
+          username: res.profileUser?.username,
+          name: res.profileUser?.name,
+          surname: res.profileUser?.surname,
+          photo: res.profileUser?.photo
           
         });
         
@@ -112,8 +112,8 @@ export const TatuProfile = () => {
     <>
       <div className="profileDesign">
         <div className="userInfo">
-          <img src={profileData.photo}></img>
-          <h1 className="">{profileData.username}</h1>
+          <img src={profileData.artistProfile?.photo}></img>
+          <h1 className="">{profileData.artistProfile?.username}</h1>
           <button onClick={() => buttonHandler()}>
             {isEditing ? "" : "Editar perfil"}
           </button>
@@ -125,7 +125,7 @@ export const TatuProfile = () => {
                 name="name"
                 type="text"
                 handler={inputHandler}
-                value={editableProfileData.name}
+                value={editableProfileData.artistProfile?.name}
                 placeholder="Nombre"
                
               ></InputLogin>
@@ -133,21 +133,21 @@ export const TatuProfile = () => {
                 name="surname"
                 type="text"
                 handler={inputHandler}
-                value={editableProfileData.surname}
+                value={editableProfileData.artistProfile?.surname}
                 placeholder="Apellido"
               ></InputLogin>
                 <InputLogin
                 name="email"
                 type="email"
                 handler={inputHandler}
-                value={editableProfileData.email}
+                value={editableProfileData.artistProfile?.email}
                 placeholder="email"
               ></InputLogin>
                <InputLogin
                 name="photo"
                 type="text"
                 handler={inputHandler}
-                value={editableProfileData.photo}
+                value={editableProfileData.artistProfile?.photo}
                 placeholder="Cambia tu foto"
               ></InputLogin>
             </>
@@ -158,25 +158,25 @@ export const TatuProfile = () => {
           <button onClick={saveChanges}>Guardar cambios</button>
         ) : null}
 
-        <h2>{profileData.profileUser?.name}</h2>
-        <h2>{profileData.profileUser?.surname}</h2>
-        <p>{profileData.profileUser?.email}</p>
+        <h2>{profileData.artistProfile?.name}</h2>
+        <h2>{profileData.artistProfile?.surname}</h2>
+        <p>{profileData.artistProfile?.email}</p>
 
 
 
 
         <div className="appointmentsUserContainer">
-          {profileData.appointments && profileData.userArtistIds.map((userArtistId, index) => (
-            <AppointmentCard
-              key={index}
-              artistName={userArtistId}
-              date={moment(profileData.appointments[index].date).format("DD-MM-YYYY")}
-              hour={profileData.appointments[index].hour}
-
-            />
-          ))}
-        </div>
-      </div>
+  {profileData.artistProfile?.appointments?.map((appointment, index) => (
+    <AppointmentCard
+      key={index}
+      artistName={appointment.user}
+      date={moment(appointment.date).format("DD-MM-YYYY")}
+      hour={appointment.hour}
+    />
+  ))}
+</div>
+</div>
+     
 
     </>
   )
