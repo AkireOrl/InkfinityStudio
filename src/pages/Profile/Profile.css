@@ -48,3 +48,13 @@ p {
     display: flex;
     flex-direction: column;
 }
+
+.portofolioImg {
+    width: 100px!important;
+    height: 100px!important;
+}
+
+.port {
+    width: 100px!important;
+    height: 100px!important;
+}

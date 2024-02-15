@@ -25,13 +25,14 @@ export const TatuProfile = () => {
   console.log(userId);
   const dispatch = useDispatch();
   const [editableProfileData, setEditableProfileData] = useState({});
+  const [editablePortfolio, setEditablePortfolio] = useState("");
   // console.log(editableProfileData, "input data");
 
   useEffect(() => {
     const fetchData = async () => {
       if (!token) {
         navigate("/register");
-      } else  {
+      } else {
         const res = await getArtistById(token);
         setProfileData(res);
 
@@ -40,10 +41,11 @@ export const TatuProfile = () => {
           username: res.profileUser?.username,
           name: res.profileUser?.name,
           surname: res.profileUser?.surname,
-          photo: res.profileUser?.photo
-          
+          photo: res.profileUser?.photo,
+          portfolio: res.profileUser.portfolio
+
         });
-        
+
       }
     };
 
@@ -51,9 +53,9 @@ export const TatuProfile = () => {
   }, []);
 
 
-  useEffect(()=>{
-    console.log(profileData,"datos que llegan del backnd")
-  } , [profileData]);
+  useEffect(() => {
+    console.log(profileData, "datos que llegan del backnd")
+  }, [profileData]);
 
 
 
@@ -61,16 +63,20 @@ export const TatuProfile = () => {
     setEditableProfileData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
-     
+
     }));
-    
+    setEditablePortfolio((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+
+    }));
   };
 
   const buttonHandler = () => {
     setIsEditing(!isEditing);
   };
 
-  
+
   const saveChanges = async () => {
     if (editableProfileData) {
       // Actualizar el perfil del usuario en la base de datos
@@ -79,14 +85,16 @@ export const TatuProfile = () => {
         username: editableProfileData.username,
         surname: editableProfileData.surname,
         photo: editableProfileData.photo,
+        portfolio: editableProfileData.portfolio,
       };
       console.log(updatedData, " soy console en funcion");
-  
+
       if (token) {
         try {
-          updateUser(token, updatedData);
-         // alert("Cambios guardados correctamente.");
-         // dispatch(updateUserData(updatedData));
+         updateUser(token, updatedData)
+        //  updatePortfolio(token, updatedData);
+          // alert("Cambios guardados correctamente.");
+          // dispatch(updateUserData(updatedData));
           setProfileData((prevState) => ({
             ...prevState,
             profileUser: {
@@ -95,8 +103,10 @@ export const TatuProfile = () => {
               username: updatedData.username,
               surname: updatedData.surname,
               photo: updatedData.photo,
+              portfolio: updatedData.portfolio,
             },
           }));
+
           setIsEditing(false);
         } catch (error) {
           console.error("Error al actualizar el usuario: ", error.response);
@@ -117,8 +127,8 @@ export const TatuProfile = () => {
           <button onClick={() => buttonHandler()}>
             {isEditing ? "" : "Editar perfil"}
           </button>
-          </div>
-          <div className="updateData">
+        </div>
+        <div className="updateData">
           {isEditing ? (
             <>
               <InputLogin
@@ -127,7 +137,7 @@ export const TatuProfile = () => {
                 handler={inputHandler}
                 value={editableProfileData.artistProfile?.name}
                 placeholder="Nombre"
-               
+
               ></InputLogin>
               <InputLogin
                 name="surname"
@@ -136,20 +146,21 @@ export const TatuProfile = () => {
                 value={editableProfileData.artistProfile?.surname}
                 placeholder="Apellido"
               ></InputLogin>
-                <InputLogin
+              <InputLogin
                 name="email"
                 type="email"
                 handler={inputHandler}
                 value={editableProfileData.artistProfile?.email}
                 placeholder="email"
               ></InputLogin>
-               <InputLogin
+              <InputLogin
                 name="photo"
                 type="text"
                 handler={inputHandler}
                 value={editableProfileData.artistProfile?.photo}
                 placeholder="Cambia tu foto"
               ></InputLogin>
+            
             </>
           ) : null}
         </div>
@@ -166,17 +177,23 @@ export const TatuProfile = () => {
 
 
         <div className="appointmentsUserContainer">
-  {profileData.artistProfile?.appointments?.map((appointment, index) => (
-    <AppointmentCard
-      key={index}
-      artistName={appointment.user}
-      date={moment(appointment.date).format("DD-MM-YYYY")}
-      hour={appointment.hour}
-    />
-  ))}
-</div>
-</div>
-     
+          {profileData.artistProfile?.appointments?.map((appointment, index) => (
+            <AppointmentCard
+              key={index}
+              artistName={appointment.user}
+              date={moment(appointment.date).format("DD-MM-YYYY")}
+              hour={appointment.hour}
+            />
+          ))}
+
+        </div>
+        <div className="portfolioGallery">
+        <div className="portofolioImg">
+          <img className="port" src={profileData.artistProfile?.portfolio} />       
+        </div>
+        </div>
+      </div>
+
 
     </>
   )

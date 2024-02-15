@@ -6,6 +6,7 @@ import { Register } from "../Register/Register"
 import { Home } from "../Home/Home"
 import { Tatuadores } from "../Tatuadores/Tatuadores"
 import { TatuProfile } from "../TatuDetails/TatuProfile"
+import { SuperAdmin } from "../SuperAdminView/SuperAdminView"
 
 export const Body = () => {
 
@@ -19,7 +20,7 @@ export const Body = () => {
                 <Route path="/tatuadores" element={<Tatuadores/>} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/tatuprofile" element={<TatuProfile />} />
-                
+                <Route path="/adminview" element={<SuperAdmin/>} />
             </Routes>
         </>
     )

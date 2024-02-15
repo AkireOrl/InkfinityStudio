@@ -61,4 +61,12 @@ export const updateUser = async (token, updateData) => {
    
     return res.data;
 }
-
+export const updatePortfolio = async (token, updateData) => {
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        },
+    }
+    const res = await axios.patch(`${API_URL}/api/artist/`,updateData, config);
+    return res.data;
+}
