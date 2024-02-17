@@ -9,7 +9,7 @@ export const bringAllArtist = async ()  =>{ //funcionando
     return res.data
 }
 
-export  const getArtistById = async (token,) => {//falta pulir esto
+export  const getArtistById = async (token) => {//falta pulir esto
     const config = {
         headers:{
             Authorization: "Bearer " + token
@@ -18,8 +18,14 @@ export  const getArtistById = async (token,) => {//falta pulir esto
     const res = await axios.get(`${API_URL}/api/artist/artistprofile/`,  config)
     return res.data
 }
-export const bringAllUsers = async ()  =>{ //Cuando esté conectada con mi backend (buscar bien los endpoints)
-    const res = await  axios.get(`${API_URL}/users`)
+export const bringAllUsers = async (token)  =>{ //Cuando esté conectada con mi backend (buscar bien los endpoints)
+    const config = {
+        headers:{
+            Authorization: "Bearer " + token
+        }
+    }
+    const res = await axios.get(`${API_URL}/api/users/`, config)
+    console.log(res, "que me llega de api")
     return res.data
 }
 
