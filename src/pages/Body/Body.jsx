@@ -7,6 +7,7 @@ import { Home } from "../Home/Home"
 import { Tatuadores } from "../Tatuadores/Tatuadores"
 import { TatuProfile } from "../TatuDetails/TatuProfile"
 import { SuperAdmin } from "../SuperAdminView/SuperAdminView"
+import { SuperAppoint } from "../SuperAdAppoint/SuperAdAppoint"
 
 export const Body = () => {
 
@@ -21,6 +22,7 @@ export const Body = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/tatuprofile" element={<TatuProfile />} />
                 <Route path="/adminview" element={<SuperAdmin/>} />
+                <Route path="/todascitas" element={<SuperAppoint/>} />
             </Routes>
         </>
     )

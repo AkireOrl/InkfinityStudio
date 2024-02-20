@@ -18,15 +18,15 @@ export  const getArtistById = async (token) => {//falta pulir esto
     const res = await axios.get(`${API_URL}/api/artist/artistprofile/`,  config)
     return res.data
 }
-export const bringAllUsers = async (token)  =>{ //Cuando esté conectada con mi backend (buscar bien los endpoints)
+export const bringAllUsers = async (token, page=1)  =>{ 
     const config = {
         headers:{
             Authorization: "Bearer " + token
         }
     }
-    const res = await axios.get(`${API_URL}/api/users/`, config)
-    console.log(res, "que me llega de api")
-    return res.data
+    const res = await axios.get(`${API_URL}/api/users/?page=${page}`, config)
+    console.log(res.data.users, "que me llega de api")
+    return res.data.users
 }
 
 export const createNewUser = async (registerData) => {  //funcionando
@@ -75,4 +75,15 @@ export const updatePortfolio = async (token, updateData) => {
     }
     const res = await axios.patch(`${API_URL}/api/artist/`,updateData, config);
     return res.data;
+}
+
+export const getAllAppointments = async (token)  =>{ 
+    const config = {
+        headers:{
+            Authorization: "Bearer " + token
+        }
+    }
+    const res = await axios.get(`${API_URL}/api/appointment`, config)
+    //console.log(res.data, "que me llega de api")
+    return res.data
 }

@@ -1,35 +1,31 @@
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    cursor: pointer;
-    width: 100px;
-    height: 25px;
-    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
-    border-radius: 30px;
-    border: 1px solid #8F9092;
-    transition: all 0.2s ease;
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: #606060;
-    text-shadow: 0 1px #fff; 
-    user-select : none
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: linear-gradient(315deg, #5d02ff, #e91e63);
+  border: 1px solid #000;
+  width: 150px;
+  padding: 20px 10px 30px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top:  10%;
+}
+.button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  background: linear-gradient(315deg, #e91e63, #5d02ff);
+  z-index: -1;
+  transform: skew(2deg, 1deg);
+  border-radius: 10px;
+}
+
+ .button:hover {
+      color: rgba(255, 255, 255, 0.521);
+    background: linear-gradient(315deg, #e91e6271, #5f02ff8c);
  
   }
-  
-  .button:hover {
-    box-shadow: 0 3px 3px 1px #FCFCFC, 0 4px 6px #D6D7D9, 0 -3px 3px #CECFD1, 0 -4px 2px #FEFEFE, inset 0 0 3px 3px #CECFD1;
  
-  }
-  
-  .button:active {
-    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
- 
-  }
-  
-  .button:focus {
-    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
-  }
-  
