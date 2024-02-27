@@ -2,5 +2,11 @@
   margin: 0;
   padding: 0;
   
+  --bs-card-bg: transparent; /* Cambia transparent por el valor que desees o quítalo para dejar el fondo por defecto */
+
 }
 
+:root {
+  --bs-body-bg: transparent!important; /* Cambia transparent por el valor que desees o quítalo para dejar el fondo por defecto */
+  --bs-card-bg: transparent!important; /* Cambia transparent por el valor que desees o quítalo para dejar el fondo por defecto */
+}

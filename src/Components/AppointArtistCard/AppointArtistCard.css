@@ -1,21 +1,12 @@
-.artist-card{
+
+.AppointArtistCard {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    
-    
-    
-    
-     
-}
-.artist-card {
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 250px;
-    height: 400px;
-    margin-top: 2%; 
+    height: 300px;
+    margin-top: 2%;
     color: #FFF;
     line-height: 1.5em;
     background: #060c21;
@@ -23,11 +14,12 @@
     padding: 40px 40px 60px;
     border-radius: 10px;
     text-align: center;
-    margin-top:  10%;
+    margin-top: 10%;
     position: relative;
 
 }
-.artist-card::before {
+
+.AppointArtistCard::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -39,19 +31,40 @@
     transform: skew(2deg, 1deg);
     border-radius: 10px;
 }
+.Card.back {
+  background: #a02d2d00; /* Color de fondo con opacidad */
+  border: none; /* Sin borde */
+}
 
+.AppointArtistCard h3 {
+    font-size: clamp(20px, 4vw, 30px);
+    margin-bottom: 5px;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    color: #FFF;
+}
+
+.character-card p {
+    margin: 0;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
 
   
-  .artist-card:hover {
+  .appointment-card:hover {
     /* transition-duration: 1.25s;
     transform: scale(1.5); */
     box-shadow: 0 0 100px 12px hsl(340, 82%, 52%);
-    cursor: pointer;
+    cursor: crosshair;
     z-index: 10;
   }
   
-  .artist-card h3 {
-    font-size: clamp(10px, 3vw, 20px);
+  .appointment-card h3 {
+    font-size: clamp(20px, 4vw, 30px);
     margin-bottom: 5px;
     overflow: hidden;
     word-break: break-all;
@@ -59,7 +72,7 @@
     color: #FFF;
   }
   
-  .artist-card p {
+  .appointment-card p {
     margin: 0;
     font-size: 14px;
     white-space: nowrap;
@@ -67,16 +80,5 @@
     word-wrap: break-word;
     text-overflow: ellipsis;
   }
+
   
-  .card-content {
-    margin-top: 2.5em;
-  }
-  
-  .artist-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 5px;
-  }
-  .role_name {
-    color: #FFF;
-  }

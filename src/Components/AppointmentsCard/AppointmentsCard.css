@@ -62,8 +62,6 @@
 
   
   .appointment-card:hover {
-    transition-duration: 1.25s;
-    transform: scale(1.5);
     box-shadow: 0 0 100px 12px hsl(340, 82%, 52%);
     cursor: crosshair;
     z-index: 10;

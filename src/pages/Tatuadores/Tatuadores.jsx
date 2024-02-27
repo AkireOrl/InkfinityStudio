@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react"
 import { ArtistCard } from "../../Components/ArtistCard/ArtistCard";
 import { bringAllArtist } from "../../Services/ApiCalls";
@@ -11,36 +9,34 @@ export const Tatuadores = () => {
 
     const [artists, setArtists] = useState([]);
     const [inputValue, setInputValue] = useState('');
+    const [artistSelect, setArtistSelect]  = useState(null);
 
-    const navigate = useNavigate()
-    const inputHandler = (e) => {
-        setInputValue(e.target.value)
-    }
-
-    const buttonHandler = () => {
-        // if (contraseña correcta) ...
-        let personajeSeleccionado = {}
-        artists.forEach((artist) => {
-            if (inputValue === artist.name) {
-                personajeSeleccionado = artist
-                console.log(artist)
-                localStorage.setItem('details', JSON.stringify(artist))
-                navigate('/characterdetail')
-            }
-        })
-    };
-
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (artists.length === 0) {
             bringAllArtist().then((arts) => {
-                setArtists(arts);
+                setArtists(arts.userArtistIds); 
             });
         }
         // console.log(artists, "soy console de artists, a ver si salgo");
     }, []);
 
+    console.log( artists, "soy console de artists, a ver si salgo");
+    const buttonHandler = () => {
+        // if (contraseña correcta) ...
+        const personajeSeleccionado = artists.find((artist) => parseInt(inputValue) === artist.id);
+        // If a matching artist is found, navigate to the new page
+        if (personajeSeleccionado) {
+            console.log(personajeSeleccionado);
+            // navigate(`/artist/${personajeSeleccionado.id}`);
+        }
+    };
+
+ 
+
+
+   
     return (
         <>
 
@@ -48,26 +44,28 @@ export const Tatuadores = () => {
                 <h1 className="tituloTatus">Conoce a <br />nuestro equipo</h1>
             </div>
 
-            <div className="apiCallButton" onClick={buttonHandler}></div>
-            <div className=" container-fluid col-9">
-                <div className="artistContainer">
+            <div className="apiCallButton">
+                <div className=" container-fluid col-9">
+                    <div className="artistContainer">
 
-                    {artists && artists.userArtistIds && artists.userArtistIds.length > 0 ? (
-                        artists.userArtistIds.map((artist) => {
-                            return (
-                                <ArtistCard
-                                    key={artist.id}
-                                    name={artist.name}
-                                    photo={artist.photo}
-                                />
-                            );
-                        })
-                    ) : (
-                        <p>No hay artistas para mostrar.</p>
-                    )}
+                    {artists && artists.length > 0 ? (
+                            artists.map((artist, index) => {
+                                return (
+                                    <ArtistCard
+                                        key={index}
+                                        id={artist.id}
+                                        name={artist.name}
+                                        photo={artist.photo}
+                                        //  handler={buttonHandler}
+                                    />
+                                );
+                            })
+                        ) : (
+                            <p>No hay artistas para mostrar.</p>
+                        )}
+                    </div>
                 </div>
             </div>
-
         </>
     )
 

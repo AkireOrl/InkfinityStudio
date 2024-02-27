@@ -1,6 +1,8 @@
 
 import "./AppointmentsCard.css"
-export const AppointmentCard = ({ date, hour, artistName, user, id }) => {
+export const AppointmentCard = ({ date, hour, artistName, user,}) => {
+
+ 
   return (
     <div className="AppointmentCard">
       
@@ -9,6 +11,7 @@ export const AppointmentCard = ({ date, hour, artistName, user, id }) => {
       <p>{date}</p>
       <p>{hour}</p>
       
+
     </div>
   );
 };

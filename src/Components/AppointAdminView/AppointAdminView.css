@@ -1,0 +1,73 @@
+.appointAdmin{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.appointAdmin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 250px;
+    height: 375px;
+    margin-top: 2%; 
+    color: #FFF;
+    line-height: 1.5em;
+    background: #060c21;
+    border: 1px solid #000;
+    padding: 40px 40px 60px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top:  10%;
+    position: relative;
+
+}
+.appointAdmin::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    background: linear-gradient(315deg, #e91e63, #5d02ff);
+    z-index: -1;
+    transform: skew(2deg, 1deg);
+    border-radius: 10px;
+}
+
+
+  
+  .appointAdmin:hover {
+    /* transition-duration: 1.25s;
+    transform: scale(1.5); */
+    box-shadow: 0 0 100px 12px hsl(340, 82%, 52%);
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .appointAdmin h3 {
+    font-size: clamp(20px, 4vw, 30px);
+    margin-bottom: 5px;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    color: #FFF;
+  }
+  
+  .appointAdmin p {
+    margin: 0;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+  }
+  
+  .card-content {
+    margin-top: 2.5em;
+  }
+  
+  .userPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+  }

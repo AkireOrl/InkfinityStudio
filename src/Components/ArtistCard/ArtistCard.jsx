@@ -1,14 +1,14 @@
 
 import "./ArtistCard.css"
-export const ArtistCard = ({id, photo, name}) => {
+export const ArtistCard = ({index, id, photo, name, handler}) => {
 
 
     return (
       
-        <div className="artist-card" key={id}>
+        <div className="artist-card" key={index} onClick={() => handler()}>
         <div className="card-content">
           <img className="artist-img" src={photo}></img>
-          <h3 id="artist-name">{name}</h3>
+          <h3 className="artist-name">{name}</h3>
         </div>
       </div>
 

@@ -39,9 +39,9 @@ export const Header = () => {
 
   const logMeOut = () => {
     dispatch(logout({ credentials: { token: null, userData: null}}));
-    setTimeout(() => {
+  
       navigate('/')
-    });
+    // });
   };
  
   
@@ -65,6 +65,7 @@ export const Header = () => {
                     <>
                   <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
                       <NavDropdown.Item href="/adminview">Panel de Admin</NavDropdown.Item>
+                      <NavDropdown.Item href="/todascitas">Todas las Citas</NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item onClick={() => logMeOut()}>Log out</NavDropdown.Item>
                       </>

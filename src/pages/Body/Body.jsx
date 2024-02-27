@@ -5,7 +5,7 @@ import { Login } from "../Login/Login"
 import { Register } from "../Register/Register"
 import { Home } from "../Home/Home"
 import { Tatuadores } from "../Tatuadores/Tatuadores"
-import { TatuProfile } from "../TatuDetails/TatuProfile"
+import { TatuProfile } from "../TatuProfile/TatuProfile"
 import { SuperAdmin } from "../SuperAdminView/SuperAdminView"
 import { SuperAppoint } from "../SuperAdAppoint/SuperAdAppoint"
 

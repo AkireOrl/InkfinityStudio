@@ -85,8 +85,6 @@ export const Profile = () => {
       if (token) {
         try {
           updateUser(token, updatedData);
-         // alert("Cambios guardados correctamente.");
-         // dispatch(updateUserData(updatedData));
           setProfileData((prevState) => ({
             ...prevState,
             profileUser: {

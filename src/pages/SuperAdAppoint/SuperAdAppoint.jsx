@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { userData } from "../userSlice";
 import { jwtDecode } from "jwt-decode";
-import { getAllAppointments } from "../../Services/ApiCalls";
-import { AppointmentCard } from "../../Components/AppointmentsCard/AppointmentsCard";
-import moment from "moment";
+import { getAllAppointments, updateAppointment } from "../../Services/ApiCalls";
 import { AppointsAdmin } from "../../Components/AppointAdminView/AppointAdminView";
+import "../../Components/AppointAdminView/AppointAdminView.css";
 
 
 
@@ -34,11 +33,12 @@ export const SuperAppoint = () => {
             getAllAppointments(token)
             .then((res) => {
                 setCitas(res)
-                //console.log(res, "soy citas en funcion");
+                console.log(res, "soy citas en funcion");
         })
     }
     
     }, []);
+//-----------------------------------------------------------------------------------------
 
 
 return(
@@ -57,16 +57,20 @@ return(
             artistProfiles.artistAppointments.map((appointment) => (
               <AppointsAdmin
                 key={appointment.id}
-                
+                photo={appointment.user.photo}
                 date={appointment.date}
                 hour={appointment.hour}
                 name={appointment.user.username}
-                
+           
               />
+              
             ))}
+            
         </div>
       ))}
+        
   </div>
+ 
 </>
 );
 };
