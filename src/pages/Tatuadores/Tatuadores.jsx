@@ -12,7 +12,8 @@ export const Tatuadores = () => {
     const token = userRdxDetail.credentials.token;
     const [artists, setArtists] = useState([]);
     // const [inputValue, setInputValue] = useState('');
-    const [artistSelect, setArtistSelect] = useState({ id: null });
+    // const [artistSelect, setArtistSelect] = useState({ id: null });
+    const [artistSelect, setArtistSelect] = useState(null);
     const [showForm, setShowForm] = useState(false);
     
 
@@ -48,7 +49,7 @@ export const Tatuadores = () => {
                // console.log(decodeToken);
                 return decodeToken;
             } catch (error) {
-                console.log("no sé que mierdas estoy haciendo")
+                // console.log("no sé que mierdas estoy haciendo")
             }
         }
     }
@@ -58,7 +59,7 @@ export const Tatuadores = () => {
         e.preventDefault();
         let decodeToken = jwtDecode(token);
         console.log(artistSelect)
-        // const { userId, artistId, date, time } = e.target;
+    
         const appointmentData = {
             user_id: decodeToken.userId,
             artist_id: artistSelect.id,
@@ -100,16 +101,16 @@ export const Tatuadores = () => {
                                         // handler={() => handlerSelect(artist.id)}
                                         />
                                         {isLoggedIn() && <button className="mybutton" onClick={() => handlerSelect(artist.id)}>Pedir Cita</button>}
-                                        {showForm && (
+                                        {showForm && artistSelect && artistSelect.id === artist.id && (
                                             <form onSubmit={handleSubmit}  className="appointmentForm"  >
 
                                                 <label htmlFor="date"></label>
-                                                <input type="date" id="date" name="date" required />
+                                                <input className="inputsAppo" type="date" id="date" name="date" required />
 
                                                 <label htmlFor="time"></label>
-                                                <input type="time" id="time" name="time" required />
+                                                <input className="inputsAppo" type="time" id="time" name="time" required />
 
-                                                <button type="submit">Enviar</button>
+                                                <button type="submit" className="mybutton">Enviar</button>
                                             </form>
                                         )}
                                     </div>
