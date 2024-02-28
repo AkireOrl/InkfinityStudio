@@ -88,13 +88,14 @@ export const getAllAppointments = async (token)  =>{
     return res.data
 }
 export const deleteAppointments = async (id, token) => {
+    console.log(id,"esto es el id");
     const config = {
         headers:{
             Authorization: "Bearer " + token
         }
     }
     const res = await axios.delete(`${API_URL}/api/appointment/${id}`, config)
-    //console.log(res.data, "que me llega de api")
+    console.log(res, "que me llega de api")
     return res.data
 }
 
