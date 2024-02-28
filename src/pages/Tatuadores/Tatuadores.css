@@ -45,3 +45,8 @@
     gap: 5em;    
 
 }
+.mybutton {
+    background: linear-gradient(315deg, #5d02ff, #e91e63);
+    color:#fff!important;
+    border-radius: 7px;
+}

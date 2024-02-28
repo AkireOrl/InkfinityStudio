@@ -85,7 +85,7 @@ export const TatuProfile = () => {
   const handleDelete = (id) => {
     // console.log("soy la papelera")
     setDeleteAppointmentId({id});
-    console.log(id)
+    //console.log(id)
   };
 
   const saveChanges = async () => {
@@ -164,7 +164,7 @@ export const TatuProfile = () => {
   };
 
 
-  //El Handler de delete funciona pero ahora no consigo enviar esa info a la través de la función
+  
   const deleteAppointment = async (id) => {
     try {
       if (deleteAppointmentId !== null && deleteAppointmentId.id === id) {

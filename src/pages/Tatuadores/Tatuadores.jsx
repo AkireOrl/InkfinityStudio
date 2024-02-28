@@ -1,42 +1,82 @@
 import { useEffect, useState } from "react"
 import { ArtistCard } from "../../Components/ArtistCard/ArtistCard";
-import { bringAllArtist } from "../../Services/ApiCalls";
+import { bringAllArtist, createAppointments } from "../../Services/ApiCalls";
 import "./Tatuadores.css"
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
+import { userData } from "../userSlice";
 
 export const Tatuadores = () => {
-
+    const userRdxDetail = useSelector(userData)
+    const token = userRdxDetail.credentials.token;
     const [artists, setArtists] = useState([]);
-    const [inputValue, setInputValue] = useState('');
-    const [artistSelect, setArtistSelect]  = useState(null);
+    // const [inputValue, setInputValue] = useState('');
+    const [artistSelect, setArtistSelect] = useState({ id: null });
+    const [showForm, setShowForm] = useState(false);
+    
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (artists.length === 0) {
             bringAllArtist().then((arts) => {
-                setArtists(arts.userArtistIds); 
+                setArtists(arts.userArtistIds);
             });
         }
-        // console.log(artists, "soy console de artists, a ver si salgo");
+        //console.log(artists, "soy console de artists, a ver si salgo");
     }, []);
 
-    console.log( artists, "soy console de artists, a ver si salgo");
-    const buttonHandler = () => {
-        // if (contraseña correcta) ...
-        const personajeSeleccionado = artists.find((artist) => parseInt(inputValue) === artist.id);
-        // If a matching artist is found, navigate to the new page
-        if (personajeSeleccionado) {
-            console.log(personajeSeleccionado);
-            // navigate(`/artist/${personajeSeleccionado.id}`);
+
+
+    const handlerSelect = (id) => {
+        const selectedArtist = artists.find((artist) => parseInt(artist.id) === id);
+        if (selectedArtist) {
+            setArtistSelect(selectedArtist);
+            setShowForm(true);
+            console.log(selectedArtist);
+        } else {
+            console.error('Artist not found');
         }
     };
 
- 
+
+    const isLoggedIn = () => {
+        if (token) {
+            try {
+                let decodeToken = jwtDecode(token);
+               // console.log(decodeToken);
+                return decodeToken;
+            } catch (error) {
+                console.log("no sé que mierdas estoy haciendo")
+            }
+        }
+    }
+    
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let decodeToken = jwtDecode(token);
+        console.log(artistSelect)
+        // const { userId, artistId, date, time } = e.target;
+        const appointmentData = {
+            user_id: decodeToken.userId,
+            artist_id: artistSelect.id,
+            date: e.target.elements.date.value,
+            hour: e.target.elements.time.value,
+        };
+        
+        try {
+            await createAppointments(token, appointmentData);
+            navigate("/profile");
+        } catch (error) {
+            console.error("Error creating appointment: ", error);
+        }
+    };
 
 
-   
+
+
     return (
         <>
 
@@ -44,20 +84,35 @@ export const Tatuadores = () => {
                 <h1 className="tituloTatus">Conoce a <br />nuestro equipo</h1>
             </div>
 
-            <div className="apiCallButton">
+            <div className="allBody">
                 <div className=" container-fluid col-9">
                     <div className="artistContainer">
 
-                    {artists && artists.length > 0 ? (
+                        {artists && artists.length > 0 ? (
                             artists.map((artist, index) => {
                                 return (
-                                    <ArtistCard
-                                        key={index}
-                                        id={artist.id}
-                                        name={artist.name}
-                                        photo={artist.photo}
-                                        //  handler={buttonHandler}
-                                    />
+                                    <div key={index}>
+                                        <ArtistCard
+
+                                            id={artist.id}
+                                            name={artist.name}
+                                            photo={artist.photo}
+                                        // handler={() => handlerSelect(artist.id)}
+                                        />
+                                        {isLoggedIn() && <button className="mybutton" onClick={() => handlerSelect(artist.id)}>Pedir Cita</button>}
+                                        {showForm && (
+                                            <form onSubmit={handleSubmit}  className="appointmentForm"  >
+
+                                                <label htmlFor="date"></label>
+                                                <input type="date" id="date" name="date" required />
+
+                                                <label htmlFor="time"></label>
+                                                <input type="time" id="time" name="time" required />
+
+                                                <button type="submit">Enviar</button>
+                                            </form>
+                                        )}
+                                    </div>
                                 );
                             })
                         ) : (
@@ -66,8 +121,10 @@ export const Tatuadores = () => {
                     </div>
                 </div>
             </div>
+
         </>
-    )
+    );
+
 
 
 }

@@ -95,7 +95,6 @@ export const deleteAppointments = async (id, token) => {
         }
     }
     const res = await axios.delete(`${API_URL}/api/appointment/${id}`, config)
-    console.log(res, "que me llega de api")
     return res.data
 }
 
@@ -107,4 +106,13 @@ export const updateAppointment = async(id, updateData, token) => {
     }
     const res = await axios.patch(`${API_URL}/api/appointment/${id}`,updateData, config)
     return res.data
+}
+export const createAppointments = async(token, appointmentData) => {
+    const config ={
+        headers:{
+            Authorization: "Bearer " + token
+        }
+    }
+    const res = await axios.post(`${API_URL}/api/appointment` ,appointmentData, config )
+   return res.data;
 }
