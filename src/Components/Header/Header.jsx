@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import userSlice, { logout, userData } from "../../pages/userSlice";
+import  { logout, userData } from "../../pages/userSlice";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
@@ -16,24 +16,11 @@ export const Header = () => {
   const dispatch = useDispatch();
   const userRdxData = useSelector(userData);
   const { credentials } = useSelector((state) => state.user);
- // console.log(userRdxData, "soy redux data en header");
 
-  // const token = userRdxData.credentials 
-  // ? 
-  // userRdxData.credentials.token 
-  // : null;
-  // // console.log(token, "soy log en linea 21 de header")
-  // const decoded = userRdxData.credentials 
-  // ? 
-  // userRdxData.credentials.userData 
-  // : null;
-  // //   const token = 3
-  // const decoded = 4
 
   const token = userRdxData.credentials.token
   const decoded = userRdxData.credentials.userData
-  // const token = useSelector((state) => state.login.token);
-  // const decoded = useSelector((state) => state.login.userData);
+
 
   console.log(decoded)
 
@@ -41,7 +28,7 @@ export const Header = () => {
     dispatch(logout({ credentials: { token: null, userData: null}}));
   
       navigate('/')
-    // });
+    
   };
  
   
@@ -80,7 +67,6 @@ export const Header = () => {
               ): (
               <>
               <NavDropdown.Item href="profile">Perfil</NavDropdown.Item>
-                  <NavDropdown.Item href="">Mis no-citas</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={() => logMeOut()}>Log out</NavDropdown.Item>
                   </>

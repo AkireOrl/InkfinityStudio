@@ -7,6 +7,7 @@ import { jwtDecode } from "jwt-decode";
 import { getAllAppointments, updateAppointment } from "../../Services/ApiCalls";
 import { AppointsAdmin } from "../../Components/AppointAdminView/AppointAdminView";
 import "../../Components/AppointAdminView/AppointAdminView.css";
+import { Col, Row } from "react-bootstrap";
 
 
 
@@ -48,10 +49,11 @@ return(
     <h1 className="tituloTatus">Todas las<br />citas</h1>
   </div>
 
-  <div className="appointmentsUserContainer">
+  <div className="appointmentsUserContainer col-6">
+    <Row>
     {citas.artistProfiles &&
       citas.artistProfiles.map((artistProfiles) => (
-        <div key={artistProfiles.id}>
+        <Col key={artistProfiles.id} md={3} className="mb-4">
           <h2>{artistProfiles.artistName}</h2>
           {artistProfiles.artistAppointments &&
             artistProfiles.artistAppointments.map((appointment) => (
@@ -66,9 +68,9 @@ return(
               
             ))}
             
-        </div>
+            </Col>
       ))}
-        
+     </Row>  
   </div>
  
 </>

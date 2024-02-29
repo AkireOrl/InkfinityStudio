@@ -5,7 +5,7 @@ export const ArtistCard = ({index, id, photo, name, handler, children}) => {
 
     return (
       
-        <div className="artist-card" key={index} onClick={() => handler(id)}>
+        <div className="artist-card" key={index}>
         <div className="card-content">
           <img className="artist-img" src={photo}></img>
           <h3 className="artist-name">{name}</h3>
@@ -15,3 +15,4 @@ export const ArtistCard = ({index, id, photo, name, handler, children}) => {
 
     );
 }
+// onClick={() => handler(id)}

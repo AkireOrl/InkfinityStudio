@@ -64,10 +64,21 @@
   
   .card-content {
     margin-top: 2.5em;
+    
   }
   
   .userPhoto {
     width: 80px;
     height: 80px;
     border-radius: 5px;
+  }
+  .img{
+    width: 50px;
+}
+.appointmentsUserContainer{
+    display: felx;
+    justify-content: center;
+}
+.max-width-900 {
+    max-width: 900px;
   }

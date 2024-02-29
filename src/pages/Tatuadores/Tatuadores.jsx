@@ -16,6 +16,9 @@ export const Tatuadores = () => {
     const [artistSelect, setArtistSelect] = useState(null);
     const [showForm, setShowForm] = useState(false);
     
+  const userRol = userRdxDetail.credentials.userData.userRoles[0];
+
+
 
     const navigate = useNavigate();
 
@@ -49,7 +52,7 @@ export const Tatuadores = () => {
                // console.log(decodeToken);
                 return decodeToken;
             } catch (error) {
-                // console.log("no sé que mierdas estoy haciendo")
+                console.error('No estas registrado');
             }
         }
     }
@@ -100,7 +103,9 @@ export const Tatuadores = () => {
                                             photo={artist.photo}
                                         // handler={() => handlerSelect(artist.id)}
                                         />
-                                        {isLoggedIn() && <button className="mybutton" onClick={() => handlerSelect(artist.id)}>Pedir Cita</button>}
+                                        
+                                        {isLoggedIn() && userRol === "user"  &&<button className="mybutton" onClick={() => handlerSelect(artist.id)}>Pedir Cita</button>}
+                                        
                                         {showForm && artistSelect && artistSelect.id === artist.id && (
                                             <form onSubmit={handleSubmit}  className="appointmentForm"  >
 
@@ -113,6 +118,7 @@ export const Tatuadores = () => {
                                                 <button type="submit" className="mybutton">Enviar</button>
                                             </form>
                                         )}
+                                        
                                     </div>
                                 );
                             })

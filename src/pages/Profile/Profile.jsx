@@ -163,20 +163,22 @@ export const Profile = () => {
 
 
 
-        <div className="appointmentsUserContainer">
+        <div className="appointmentsUserContainer col-9">
           {profileData.appointments && profileData.userArtistIds.map((userArtistId, index) => (
+            <div className="col-md-3" key={index}>
             <AppointmentCard
-              key={index}
+            
               artistName={userArtistId}
               date={moment(profileData.appointments[index].date).format("DD-MM-YYYY")}
               hour={profileData.appointments[index].hour}
 
             />
-            
+            </div>
           ))}
+        
         </div>
       </div>
-
+      
     </>
   )
 };
