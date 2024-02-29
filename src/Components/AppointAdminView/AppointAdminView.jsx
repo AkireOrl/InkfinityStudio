@@ -1,9 +1,9 @@
 
-import { useState } from "react";
+
 import "./AppointAdminView.css";
 import moment from "moment/moment";
-import { InputLogin } from "../InputLogin/InputLogin";
-export const AppointsAdmin = ({ id, name, date, hour, artistName, photo,}) => {
+import { TrashIcon } from "../TrashIcon/TrashIcon";
+export const AppointsAdmin = ({ id, name, date, hour, artistName, photo, onDelete}) => {
 
 
 
@@ -15,7 +15,9 @@ export const AppointsAdmin = ({ id, name, date, hour, artistName, photo,}) => {
           <h4 className="date">{moment(date).format("DD-MM-YYYY")}</h4>
           <h4 className="hour">{hour}</h4>
           <h4 className="username">{name}</h4>
-
+          <div className="appointmentsCard__icon" onClick={onDelete}>
+        <TrashIcon />
+      </div>
 </div>
 </div>
     )

@@ -60,7 +60,7 @@ export const Header = () => {
               ) :  decoded.userRoles[0] === "admin" ? (
                 <>
                   <NavDropdown.Item href="tatuprofile">TatuPerfil</NavDropdown.Item>
-                  <NavDropdown.Item href="">Mis cosas</NavDropdown.Item>
+                  
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={() => logMeOut()}>Log out</NavDropdown.Item>
                 </>
