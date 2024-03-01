@@ -6,8 +6,6 @@
     <li><a href="#objetivo">Objetivo</a></li>
     <li><a href="#sobre-el-proyecto">Sobre el proyecto</a></li>
     <li><a href="#stack">Stack</a></li>
-    <li><a href="#diagrama-bd">Diagrama</a></li>
-    <li><a href="#instalación-en-local">Instalación</a></li>
     <li><a href="#contribuciones">Contribuciones</a></li>
     <li><a href="#webgrafia">Webgrafia</a></li>
     <li><a href="#agradecimientos">Agradecimientos</a></li>
@@ -16,25 +14,20 @@
 </details>
 
 ## Objetivo
-Este proyecto requería una API funcional conectada a una base de datos relacional.
+Este proyecto esta en la ruta de aprendizaje del BootCamp de Full Stack Developer de GeeksHub Academy. 
+
+Consiste en un FrontEnd para un estudio de tatuajes cuyo [BackEnd](https://github.com/AkireOrl/Proyecto4BootCamp) realizamos en el ejercicio anterior.
 
 ## Sobre el proyecto
-Propuesto el proyecto de desarrollar una aplicación web para la gestión de una compañía de un estudio de tatuajes, el presente repositorio supone la sección backend del mismo. Esta sección habrá de desarrollarse con un esquema modelo vista controllador, generando una API funcional que permita hacer distintas llamadas, en ocasiones multitabla, discriminando los privilegios de usuario en función de su rol.
+Propuesto el proyecto de desarrollar una aplicación web para la gestión de  un estudio de tatuajes, el presente repositorio supone la sección frontend del mismo. 
 
 
 ## Stack
 Tecnologías utilizadas:
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![NodeJS](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=flat)](https://developer.mozilla.org/en-US/docs/Web/API/Node) [![ExpressJS](https://img.shields.io/badge/Express-000?logo=express&logoColor=fff&style=flat)](https://expressjs.com/) [![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=flat)](https://dev.mysql.com/doc/) [![JWT](https://img.shields.io/badge/JSON%20Web%20Tokens-000?logo=jsonwebtokens&logoColor=fff&style=flat)](https://jwt.io/introduction) [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=flat)](https://developer.mozilla.org/en-US/docs/Glossary/Git)
 
 
-## Instalación en local
-1. Clonar el repositorio
-2. ` $ npm install `
-3. Conectamos nuestro repositorio con la base de datos 
-4. ``` $ Ejecutamos las migraciones ``` 
-5. ``` $ Ejecutamos los seeders ``` 
-6. ``` $ npm run dev ``` 
-7. ...
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat)](https://reactjs.org/) [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff&style=flat)](https://vitejs.dev/) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![Redux](https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=fff&style=flat)](https://redux.js.org/) [![JWT](https://img.shields.io/badge/JSON%20Web%20Tokens-000?logo=jsonwebtokens&logoColor=fff&style=flat)](https://jwt.io/introduction) [![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff&style=flat)](https://getbootstrap.com/) [![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=flat)](https://axios-http.com/)
+
 
 
 ## Contribuciones
@@ -61,9 +54,9 @@ Puedes hacerlo de dos maneras:
 
 ## Webgrafia:
 Para conseguir mi objetivo he recopilado información de:
-- https://github.com/fidelfsd/fsd-online-express-typeorm-academy-api 
-- https://github.com/vincenzo2202/Backend_tatto-studio_API_DB
-- https://typeorm.io/
+- https://es.react.dev/ 
+- https://react-bootstrap.netlify.app/
+- https://react-redux.js.org/
 
 
 ## Agradecimientos:
@@ -80,3 +73,5 @@ Agradezco a mis compañeros el tiempo dedicado a este proyecto y a los profesore
 <a href = "mailto:om.erikaorlando@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
 <a href="https://www.linkedin.com/in/erika-orlando/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 </p>
+
+
