@@ -1,4 +1,4 @@
-# TATOOSHOPP API
+# InkfinityStudio
 
 <details>
   <summary>Contenido 📝</summary>
