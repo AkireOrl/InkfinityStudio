@@ -15,7 +15,7 @@ export const Register = () => {
         email: "",
         password: "",
     });
-    console.log(registerData, "input data");
+    
 
     const inputHandler = (event) => {
         setRegisterData((prevState) => ({
