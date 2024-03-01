@@ -3,7 +3,9 @@
 import "./AppointAdminView.css";
 import moment from "moment/moment";
 import { TrashIcon } from "../TrashIcon/TrashIcon";
-export const AppointsAdmin = ({ id, name, date, hour, artistName, photo, onDelete}) => {
+
+
+export const AppointAdminView = ({ id, name, date, hour, artistName, photo, onDelete}) => {
 
 
 

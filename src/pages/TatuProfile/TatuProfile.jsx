@@ -81,11 +81,10 @@ export const TatuProfile = () => {
     setEditableAppointment(null);
   };
 
-  //Me he quedado por aquí, intentando que el handler me coja el id del appointment para mandarlo a la apicall
+  
   const handleDelete = (id) => {
-    // console.log("soy la papelera")
     setDeleteAppointmentId({id});
-    //console.log(id)
+   
   };
 
   const saveChanges = async () => {

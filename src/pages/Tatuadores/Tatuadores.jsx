@@ -11,12 +11,10 @@ export const Tatuadores = () => {
     const userRdxDetail = useSelector(userData)
     const token = userRdxDetail.credentials.token;
     const [artists, setArtists] = useState([]);
-    // const [inputValue, setInputValue] = useState('');
-    // const [artistSelect, setArtistSelect] = useState({ id: null });
     const [artistSelect, setArtistSelect] = useState(null);
     const [showForm, setShowForm] = useState(false);
     
-  const userRol = userRdxDetail.credentials.userData.userRoles[0];
+  const userRol = userRdxDetail.credentials.userData?.userRoles[0];
 
 
 
@@ -28,7 +26,7 @@ export const Tatuadores = () => {
                 setArtists(arts.userArtistIds);
             });
         }
-        //console.log(artists, "soy console de artists, a ver si salgo");
+        
     }, []);
 
 
@@ -38,7 +36,7 @@ export const Tatuadores = () => {
         if (selectedArtist) {
             setArtistSelect(selectedArtist);
             setShowForm(true);
-            console.log(selectedArtist);
+            
         } else {
             console.error('Artist not found');
         }
@@ -49,7 +47,7 @@ export const Tatuadores = () => {
         if (token) {
             try {
                 let decodeToken = jwtDecode(token);
-               // console.log(decodeToken);
+          
                 return decodeToken;
             } catch (error) {
                 console.error('No estas registrado');
@@ -61,7 +59,7 @@ export const Tatuadores = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let decodeToken = jwtDecode(token);
-        console.log(artistSelect)
+    
     
         const appointmentData = {
             user_id: decodeToken.userId,
@@ -110,7 +108,7 @@ export const Tatuadores = () => {
                                             <form onSubmit={handleSubmit}  className="appointmentForm"  >
 
                                                 <label htmlFor="date"></label>
-                                                <input className="inputsAppo" type="date" id="date" name="date" required />
+                                                <input className="inputsAppo" type="date" id="date" name="date" min={new Date()} required />
 
                                                 <label htmlFor="time"></label>
                                                 <input className="inputsAppo" type="time" id="time" name="time" required />

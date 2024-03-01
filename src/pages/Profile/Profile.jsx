@@ -13,19 +13,19 @@ import { AppointmentCard } from "../../Components/AppointmentsCard/AppointmentsC
 
 export const Profile = () => {
   const userRdxDetail = useSelector(userData)
-  // console.log(userRdxDetail, "En profile")
+
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState({});
-  // console.log(profileData, "Linea de arriba qu eno es la 50")
+
   const [isEditing, setIsEditing] = useState(false);
   const token = userRdxDetail.credentials.token
   const decodedToken = jwtDecode(token)
-  // console.log(token, "Token en Profile");
+ 
   const userId = decodedToken.userId;
-  // console.log(userId);
+
   const dispatch = useDispatch();
   const [editableProfileData, setEditableProfileData] = useState({});
-  // console.log(editableProfileData, "input data");
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +52,7 @@ export const Profile = () => {
 
 
   useEffect(()=>{
-    console.log(profileData,"datos que llegan del backnd")
+    
   } , [profileData]);
 
 
@@ -80,7 +80,7 @@ export const Profile = () => {
         surname: editableProfileData.surname,
         photo: editableProfileData.photo,
       };
-      console.log(updatedData, " soy console en funcion");
+     
   
       if (token) {
         try {
@@ -113,7 +113,7 @@ export const Profile = () => {
           <img src={profileData.profileUser?.photo}></img>
           <h1 className="">{profileData.profileUser?.username}</h1>
           <button onClick={() => buttonHandler()}>
-            {isEditing ? "" : "Editar perfil"}
+            {isEditing ? "Ocultar edición" : "Editar perfil"}
           </button>
           </div>
           <div className="updateData">

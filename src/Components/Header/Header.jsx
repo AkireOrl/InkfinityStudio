@@ -22,8 +22,6 @@ export const Header = () => {
   const decoded = userRdxData.credentials.userData
 
 
-  console.log(decoded)
-
   const logMeOut = () => {
     dispatch(logout({ credentials: { token: null, userData: null}}));
   

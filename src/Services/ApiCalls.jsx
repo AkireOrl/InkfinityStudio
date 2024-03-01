@@ -25,7 +25,7 @@ export const bringAllUsers = async (token, page=1)  =>{
         }
     }
     const res = await axios.get(`${API_URL}/api/users/?page=${page}`, config)
-    console.log(res.data.users, "que me llega de api")
+   
     return res.data.users
 }
 
@@ -52,7 +52,7 @@ export const getProfile = async (token)  =>{ //funcionando
             Authorization: "Bearer " + token
         },
     }
-    //console.log(config, "soy log de api")
+   
     const res = await axios.get(`${API_URL}/api/users/profile2`, config)
     return res.data
 }
@@ -84,11 +84,11 @@ export const getAllAppointments = async (token)  =>{
         }
     }
     const res = await axios.get(`${API_URL}/api/appointment`, config)
-    //console.log(res.data, "que me llega de api")
+   
     return res.data
 }
 export const deleteAppointments = async (id, token) => {
-    console.log(id,"esto es el id");
+   
     const config = {
         headers:{
             Authorization: "Bearer " + token

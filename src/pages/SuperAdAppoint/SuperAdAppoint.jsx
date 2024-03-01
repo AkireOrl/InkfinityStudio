@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { userData } from "../userSlice";
 import { jwtDecode } from "jwt-decode";
 import { deleteAppointments, getAllAppointments, updateAppointment } from "../../Services/ApiCalls";
-import { AppointsAdmin } from "../../Components/AppointAdminView/AppointAdminView";
+import { AppointAdminView, AppointsAdmin } from "../../Components/AppointAdminView/AppointAdminView";
 import "../../Components/AppointAdminView/AppointAdminView.css";
 import { Col, Row } from "react-bootstrap";
 
@@ -21,7 +21,7 @@ export const SuperAppoint = () => {
     const decodedToken = jwtDecode(token);
     const decoded = userRdxData.credentials.userData;
     const userRoles = decodedToken.userRoles;
-    //console.log(userRoles, "Soy Role en superCitas")
+  
 
     const [deleteAppointmentId, setDeleteAppointmentId] = useState(null);
 
@@ -36,41 +36,41 @@ export const SuperAppoint = () => {
             getAllAppointments(token)
             .then((res) => {
                 setCitas(res)
-                console.log(res, "soy citas en funcion");
+               
         })
     }
     
     }, []);
-    const handleDelete = (id) => {
-      // console.log("soy la papelera")
-      console.log(id)
-      deleteAppointment(id, token);
-      setDeleteAppointmentId({id});
-     
-      
-    };
+  
 
-    const deleteAppointment = async (id) => {
+    const handleDelete = async (id) => {
       try {
-        if (deleteAppointmentId !== null && deleteAppointmentId.id === id) {
-          await deleteAppointments(id, token).then((res)=> {
-            getAllAppointments(token)
-            .then((res) => {
-                setCitas(res)
-                console.log(res, "soy citas en funcion");
-            })
-          });
-          setDeleteAppointmentId(null);
-        }
+          await deleteAppointments(id, token);
+          setDeleteAppointmentId({ id }); 
       } catch (error) {
-        alert(error.message);
+          alert(error.message);
       }
-    };
-    useEffect(() => {
+  };
+  
+  useEffect(() => {
+      const deleteAppointment = async (id) => {
+          try {
+              await deleteAppointments(id, token);
+              const res = await getAllAppointments(token);
+              setCitas(res);
+              setDeleteAppointmentId(null); 
+          } catch (error) {
+              alert(error.message);
+          }
+      };
+  
       if (deleteAppointmentId !== null) {
-        deleteAppointment(deleteAppointmentId.id);
+          deleteAppointment(deleteAppointmentId.id);
       }
-    }, [setCitas]);
+  }, [deleteAppointmentId, setCitas, token]);
+  
+
+
 //-----------------------------------------------------------------------------------------
 
 
@@ -89,7 +89,7 @@ return(
           <h2>{artistProfiles.artistName}</h2>
           {artistProfiles.artistAppointments &&
             artistProfiles.artistAppointments.map((appointment) => (
-              <AppointsAdmin
+              <AppointAdminView
                 key={appointment.id}
                 photo={appointment.user.photo}
                 date={appointment.date}

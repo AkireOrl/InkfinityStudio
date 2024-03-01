@@ -29,7 +29,7 @@ export const SuperAdmin = () => {
         .then((profileData) => {
           if (profileData && profileData.length > 0) {
             setProfileData(profileData);
-            console.log(profileData);
+          
           } else {
             // No se debe actualizar el estado de la página si la llamada a la API devuelve un error o un array vacío
           }
